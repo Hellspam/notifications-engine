@@ -1,4 +1,4 @@
-module github.com/hellspam/notifications-engine
+module github.com/argoproj/notifications-engine
 
 go 1.21
 
