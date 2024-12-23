@@ -202,7 +202,7 @@ func newSlackClient(opts SlackOptions) *slack.Client {
 	}
 
 	isDebug := log.GetLevel() == log.DebugLevel
-	return slack.New(opts.Token, slack.OptionHTTPClient(client), slack.OptionAPIURL(apiURL), slack.OptionDebug(isDebug))
+	return slack.New(opts.Token, slack.OptionHTTPClient(client), slack.OptionAPIURL(apiURL), slack.OptionDebug(true))
 }
 
 func isValidIconURL(iconURL string) bool {
