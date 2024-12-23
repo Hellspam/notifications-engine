@@ -200,7 +200,9 @@ func newSlackClient(opts SlackOptions) *slack.Client {
 	client := &http.Client{
 		Transport: httputil.NewLoggingRoundTripper(transport, log.WithField("service", "slack")),
 	}
-	return slack.New(opts.Token, slack.OptionHTTPClient(client), slack.OptionAPIURL(apiURL))
+
+	isDebug := log.GetLevel() == log.DebugLevel
+	return slack.New(opts.Token, slack.OptionHTTPClient(client), slack.OptionAPIURL(apiURL), slack.OptionDebug(isDebug))
 }
 
 func isValidIconURL(iconURL string) bool {
