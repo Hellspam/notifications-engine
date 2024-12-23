@@ -170,8 +170,8 @@ func buildMessageOptions(notification Notification, dest Destination, opts Slack
 
 func (s *slackService) Send(notification Notification, dest Destination) error {
 	slackNotification, msgOptions, err := buildMessageOptions(notification, dest, s.opts)
-	log.Print("Sending slack message")
-	log.Printf("Message: %v", msgOptions)
+	fmt.Print("Sending slack message")
+	fmt.Printf("Message: %v", msgOptions)
 	if err != nil {
 		return err
 	}
@@ -202,7 +202,7 @@ func newSlackClient(opts SlackOptions) *slack.Client {
 	client := &http.Client{
 		Transport: httputil.NewLoggingRoundTripper(transport, log.WithField("service", "slack")),
 	}
-	return slack.New(opts.Token, slack.OptionHTTPClient(client), slack.OptionAPIURL(apiURL))
+	return slack.New(opts.Token, slack.OptionHTTPClient(client), slack.OptionAPIURL(apiURL), slack.OptionDebug(true))
 }
 
 func isValidIconURL(iconURL string) bool {
